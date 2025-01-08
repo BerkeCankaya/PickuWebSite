@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+    --color-primary: ;
+    --color-secondary: #3D2C8D;
+    --color-accent: #FFD700;
+}
+@layer components {
+    nav::before {
+      content: "";
+      position: absolute;
+      top: -100px;
+      left: 50%;
+      opacity: 0.5;
+      transform: translateX(-50%);
+      width: 60%;
+      height: 250px;
+      background:linear-gradient(to bottom right, #385892, #2c3f80);
+      border-radius: 50%;
+      filter: blur(50px);
+      z-index: -1;
+    }
+  }
