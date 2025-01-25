@@ -12,7 +12,8 @@ import { GrTechnology } from "react-icons/gr";
 import { MdOutlineHowToVote } from "react-icons/md";
 import { FaShoppingCart } from "react-icons/fa";
 import ball from "../assets/ball.png";
-import Card from '../components/Card'; 
+import Card from './Card'; 
+
 
 const Hero = () => {
   const categories = [
@@ -36,7 +37,7 @@ const Hero = () => {
       categoryname: "Eğlence",
       image: ball,
       description: "This is the first card description.",
-      LikeSayisi:2,
+      UserName:"Berke Çankaya"
     },
     {
       id: 2,
@@ -44,7 +45,7 @@ const Hero = () => {
       categoryname: "Eğlence",
       image: ball,
       description: "This is the second card description.",
-      LikeSayisi:2,
+      UserName:"Berke Çankaya"
     },
     {
       id: 3,
@@ -52,7 +53,7 @@ const Hero = () => {
       categoryname: "Eğlence",
       image: ball,
       description: "This is the third card description.",
-      LikeSayisi:2,
+      UserName:"Berke Çankaya"
     },
     {
       id: 4,
@@ -60,18 +61,20 @@ const Hero = () => {
       categoryname: "Eğlence",
       image: ball,
       description: "This is the fourth card description.",
-      LikeSayisi:2,
+      UserName:"Berke Çankaya"
     },
   ];
 
+    
+
   return (
-    <div className="flex justify-between items-start bg-transparent w-full h-auto">
+    <div className="flex justify-between items-start w-full h-auto">
       <div className="flex justify-between items-center w-2/6 h-full">
         <div className="flex w-1/6 flex-col shadow-primary-shadow p-5 rounded-xl fixed top-40 left-96">
           <ul className='text-color'>
             <li className='flex flex-col gap-2'>
-              <Link className='flex gap-2 items-center hover:bg-secondary-backround p-2' to=""><FaStar className='text-yellow-400 text-xl' />Trends</Link>
-              <Link className='flex gap-2 items-center hover:bg-secondary-backround p-2' to=""><IoIosFootball className='text-white text-xl'/>SoccerGuess</Link>
+              <Link className='flex gap-2 items-center hover:bg-bg-hover p-2' to=""><FaStar className='text-yellow-400 text-xl' />Trends</Link>
+              <Link className='flex gap-2 items-center hover:bg-bg-hover p-2' to=""><IoIosFootball className='text-white text-xl'/>SoccerGuess</Link>
               <span className="w-full border-b border-white pb-0"></span>
             </li>
           </ul>
@@ -79,24 +82,26 @@ const Hero = () => {
             <h1 className='text-color text-xl'>Kategoriler</h1>
             <li className='flex flex-col gap-2 pt-5'>
               {categories.map((category) => (
-                <Link key={category.id} className='flex gap-2 items-center hover:bg-secondary-backround p-2 rounded' to={`/category/${category.name.toLowerCase()}`}>{category.icon} {category.name}</Link>
+                <Link key={category.id} className='flex gap-2 items-center hover:bg-bg-hover p-2 rounded' to={`/category/${category.name.toLowerCase()}`}>{category.icon} {category.name}</Link>
               ))}
             </li>
           </ul>
         </div>    
       </div>
 
-      <div className="p-10 w-4/6 flex flex-wrap gap-10 justify-start">
-        {cards.map((card) => (
+      <div className="p-10 w-4/6 flex flex-wrap gap-10">
+      {cards.map((card) => (
           <Card
             key={card.id}
+            id={card.id}
             title={card.title}
             categoryname={card.categoryname}
             description={card.description}
             image={card.image}
-            LikeSayisi={card.LikeSayisi}
+            UserName={card.UserName}
           />
         ))}
+
       </div>
     </div>
   );

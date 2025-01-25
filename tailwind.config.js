@@ -11,7 +11,7 @@ export default {
       },
       colors: {
         'background-color': '#0b0c16', 
-        "secondary-backround": "#17192e",
+        "bg-hover": "#17192e",
         "color": "#ffffff",
         "secondary":"#1c1e37",
         "button-bgColor": "#3B82F6",

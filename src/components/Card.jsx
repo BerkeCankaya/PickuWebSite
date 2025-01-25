@@ -1,15 +1,16 @@
 import { Link } from "react-router-dom";
-import { BiLike } from "react-icons/bi";
+import {IoPersonSharp } from "react-icons/io5";
 
-const Card = ({ title, description , categoryname , image , LikeSayisi=0 }) => {
+const Card = ({id, title, description , categoryname , image , UserName}) => {
   return (
-    <div className="w-5/6 h-auto flex flex-col shadow-primary-shadow rounded-xl">
+    <div className="w-5/6  h-auto flex flex-col shadow-primary-shadow rounded-xl transition hover:bg-bg-hover ">
+       <Link to={`/CardDetailsPage/${id}`}>
       <div className="p-8 flex justify-between">
         <div>
           <h2 className="text-white text-2xl font-bold">{title}</h2>
           <p className="text-white text-lg">{description}</p>
         </div>
-        <div className="flex justify-end ">
+        <div className="flex justify-end items-center ">
           <Link className="text-l text-white" to="">
           <button className="pt-1 pb-1 pl-5 pr-5 rounded-xl bg-button-bgColor">{categoryname}</button>
           </Link>
@@ -22,10 +23,11 @@ const Card = ({ title, description , categoryname , image , LikeSayisi=0 }) => {
           className="w-full h-full object-cover rounded-t-xl"
         />
       </div>
-      <div className="flex flex-col gap-1 pt-5 pl-8 pb-5">
-        <Link><BiLike className="text-white text-4xl" /></Link>
-        <h1 className="text-white text-l ">{LikeSayisi} kişi beğendi</h1>
+      <div className="flex items-center gap-1 pt-5 pl-8 pb-5">
+          <IoPersonSharp className="text-white text-2xl"/> 
+          <h1 className="text-l text-white px-2">{UserName}</h1>
       </div>
+      </Link>
     </div>
   );
 };

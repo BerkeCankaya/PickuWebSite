@@ -7,7 +7,7 @@ import { MdPerson } from "react-icons/md";
 const Navbar = () => {
 
   return (
-    <nav className='w-2/3 h-32 flex m-auto'>
+    <nav className='w-2/3 h-32 flex m-auto z-0 relative'>
       <div className="flex justify-center items-center w-1/4 h-full">
       <Link className='text-l' to="/"><h1 className='pt-7 text-5xl font-bold text-color'>PickU</h1></Link>
       </div>
@@ -29,7 +29,7 @@ const Navbar = () => {
       <ul className='flex items-center justify-center gap-3'>
         <h1>|</h1>
         <li className='flex gap-x-1  items-center justify-center'>
-          <Link className=' pl-1' to="/Login"><MdPerson className='text-2xl' /></Link>
+          <Link className=' pl-1' to="/LoginPage"><MdPerson className='text-2xl' /></Link>
           <Link className=' pl-1' to="/Profile"><MdOutlineDarkMode className='text-2xl' /></Link>
         </li>
       </ul>
