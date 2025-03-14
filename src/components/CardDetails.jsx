@@ -7,7 +7,7 @@ import { Link ,useNavigate } from "react-router-dom";
 import MoreCard from "./MoreCard";
 
 
-export default function CardDetails({ card, winners ,cardDetailsCard , blurred,
+export default function CardDetails({ card, winners ,cards , blurred,
   onUnblur }) {
 
     const itemsCount = card.items.length;
@@ -43,7 +43,7 @@ export default function CardDetails({ card, winners ,cardDetailsCard , blurred,
       {/* Card details içerikleri */}
       <div className="flex h-[30%] w-[90%] ">
         <div className="w-[40%] h-full shadow-primary-shadow rounded-lg relative">
-          <button className="py-1 px-5 absolute left-5 top-5 rounded-xl bg-button-bgColor text-white">{card.categoryname}</button>
+          <button className="cursor-default py-1 px-5 absolute left-5 top-5 rounded-xl bg-button-bgColor text-white">{card.categoryname}</button>
           <img className="w-full h-full object-cover" src={card.image} alt={card.title} />
         </div>
         <div className="w-[60%] h-[30%] rounded-lg flex flex-col gap-2 px-14">
@@ -90,12 +90,12 @@ export default function CardDetails({ card, winners ,cardDetailsCard , blurred,
         {/* Benzer Örnekler */}
         <div className="w-[50%] h-full">
           <h1 className="text-3xl text-white pl-[20%] p-3">Benzer Örnekler</h1>
-          <div className="w-full h-full flex flex-col gap-0  pt-7">
-          {cardDetailsCard
+          <div className="w-full h-full flex flex-col gap-10 my-5">
+          {cards
               .filter((similarCard) => similarCard.id !== card.id) // Mevcut kartı hariç tut
               .slice(0, 3) // Sadece 3 kart göster
               .map((similarCard) => (
-                <div key={similarCard.id} className="w-full h-[300px]">
+                <div key={similarCard.id} className="w-full h-1/3">
                   <MoreCard
                     id={similarCard.id} // Link için gerekli ID
                     cards={similarCard} // Tüm kart verisini aktar

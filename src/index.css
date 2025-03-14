@@ -32,3 +32,31 @@
   .bgLogin{
     background:linear-gradient(to bottom right, #385892, #2c3f80);
   }
+  @keyframes moveToCenterFromLeft {
+    0% {
+        transform:translate(50px , 0px); /* Başlangıç: Normal boyut, bulunduğu yerde */
+    }
+    100% {
+        transform:scale(1.2) translate(62%, 0); /* Büyüyerek merkeze gitsin */
+    }
+}
+@keyframes moveToCenterFromRight {
+  0% {
+      transform:translate(50px , 0px); /* Başlangıç: Normal boyut, bulunduğu yerde */
+  }
+  100% {
+      transform:scale(1.2) translate(-62%, 0); /* Büyüyerek merkeze gitsin */
+  }
+}
+  .center-div-fromLeft {
+    top: 50%;  /* Başlangıçta merkezi bir yerde */
+    left: 50%;
+    transform: translate(-50%, -50%); /* Başlangıçta doğru pozisyonda */
+    animation: moveToCenterFromLeft 1s ease-in-out forwards; /* Animasyonu başlat */
+  }
+  .center-div-fromRight {
+    top: 50%;  /* Başlangıçta merkezi bir yerde */
+    left: 50%;
+    transform: translate(-50%, -50%); /* Başlangıçta doğru pozisyonda */
+    animation: moveToCenterFromRight 1s ease-in-out forwards; /* Animasyonu başlat */
+  }

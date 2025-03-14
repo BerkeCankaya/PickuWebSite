@@ -1,78 +1,97 @@
 import { useState } from "react";
-import vs from '/src/assets/pngwing.com.png';  // VS görsel yolu
+import vs from "/src/assets/pngwing.com.png";
 
 export default function TestLayout({ items, title, description, selectedOption }) {
-  const [selectedCount, setSelectedCount] = useState(1);  // 1. seçimden başla
-  const [currentRound, setCurrentRound] = useState(selectedOption);  // İlk turda tüm seçenekler
-  const [currentItems, setCurrentItems] = useState(items.slice(0, 2));  // İlk 2 öğeyi göster
-  const [currentIndex, setCurrentIndex] = useState(2);  // Sonraki çift için index
-  const [selectedItems, setSelectedItems] = useState([]);  // Seçilen öğeleri saklamak için dizi
+  const [selectedCount, setSelectedCount] = useState(1);
+  const [currentRound, setCurrentRound] = useState(selectedOption);
+  const [selectedItems, setSelectedItems] = useState([]);
+  const [isFinal, setIsFinal] = useState(false);
+  const [currentItems, setCurrentItems] = useState(items.slice(0, 2));
+  const [remainingPlayers, setRemainingPlayers] = useState(items);
+  const [selectedIndex, setSelectedIndex] = useState(null); // Seçilen div'in indexi
+  const [animating, setAnimating] = useState(false); // Animasyon kontrolü
 
   const handleSelectItem = (index) => {
-    const selectedItem = currentItems[index];  // Seçilen öğeyi al
-    setSelectedItems([...selectedItems, selectedItem]);  // Seçilen öğeyi selectedItems dizisine ekle
-    setSelectedCount(selectedCount + 1);
+    setSelectedIndex(index);
+    setAnimating(true);
 
-    // Seçim tamamlandıysa, bir sonraki tura geç
-    if (selectedCount === currentRound / 2) {
-      // Eğer tur tamamlandıysa, selectedCount'u sıfırla ve bir sonraki tura geç
-      setSelectedCount(1);  // Bir sonraki tur için sayacı sıfırla
-      setCurrentRound(currentRound / 2);  // Seçenekleri yarıya indir
-      setCurrentIndex(0);  // Bir sonraki tur için index'i sıfırla
+    setTimeout(() => {
+      const selectedItem = currentItems[index];
+      const newSelectedItems = [...selectedItems, selectedItem];
 
-      // Seçilen öğeleri kullanarak bir sonraki tur için yeni öğeleri al
-      const nextRoundItems = [];
-      for (let i = 0; i < selectedItems.length; i += 2) {
-        nextRoundItems.push(selectedItems.slice(i, i + 2));  // Öğeleri çiftler halinde grupla
+      setSelectedItems(newSelectedItems);
+      setSelectedCount(selectedCount + 1);
+      setAnimating(false);
+      setSelectedIndex(null);
+
+      if (newSelectedItems.length === currentRound / 2) {
+        if (newSelectedItems.length === 1) {
+          setIsFinal(true);
+          setCurrentItems(newSelectedItems);
+          return;
+        }
+
+        setCurrentRound(currentRound / 2);
+        setSelectedCount(1);
+        setRemainingPlayers(newSelectedItems);
+        setSelectedItems([]);
+
+        setCurrentItems([newSelectedItems[0], newSelectedItems[1]]);
+      } else {
+        setCurrentItems([remainingPlayers[selectedCount * 2], remainingPlayers[selectedCount * 2 + 1]]);
       }
-      setCurrentItems(nextRoundItems[0] || []);  // İlk çifti bir sonraki turda göster
-    } else {
-      // Eğer seçim tamamlanmadıysa, bir sonraki çift öğeyi al
-      const nextPair = items.slice(currentIndex, currentIndex + 2);
-      setCurrentItems(nextPair);
-      setCurrentIndex(currentIndex + 2);  // Sonraki çift için index'i güncelle
-    }
-  };
-
-  // Bir sonraki turdaki öğeleri göster
-  const getNextRoundItems = () => {
-    if (selectedItems.length === currentRound / 2) {
-      return selectedItems;
-    }
-    return [];  // Eğer seçim tamamlanmamışsa boş dönebilir
+    }, 2500); // 5 saniye bekletiyoruz
   };
 
   return (
     <div className="flex flex-col items-center w-full h-full">
-      <div className='w-full h-[20%] flex flex-col justify-end gap-4'>
-        <h1 className='text-center text-white text-3xl'>{title}</h1>
-        <p className='text-center text-white text-xl'>{description}</p>
-        <p className='text-center text-white text-l'>
-          Son {selectedOption} <span className='pl-4'>{selectedCount}/{currentRound / 2}</span> {/* Seçim durumu */}
+      <div className="w-full h-[20%] flex flex-col justify-end gap-4">
+        <h1 className="text-center text-white text-3xl ">{title}</h1>
+        <p className="text-center text-white text-xl">{description}</p>
+        <p className="text-center text-white text-l">
+          {isFinal ? "" : `Son ${currentRound}`}
+          {!isFinal && <span className="pl-4">{selectedCount}/{currentRound / 2}</span>}
         </p>
       </div>
 
-      <div className='w-[80%] gap-10 flex items-center justify-between h-2/3 p-10'>
-        {/* İlk div */}
-        <div
-          className='w-[40%] h-3/4 border-4 border-red-500 rounded-lg cursor-pointer'
-          onClick={() => handleSelectItem(0)} // İlk öğe seçimi
-        >
-          <img src={currentItems[0]?.image} alt={currentItems[0]?.name} className="w-full h-full object-cover rounded-lg" />
-          <h1 className='text-white text-center'>{currentItems[0]?.name}</h1>
-        </div>
+      <div className="w-[80%] gap-10 flex items-center justify-between h-2/3 p-10 relative">
+        {isFinal ? (
+          <div className="w-full flex flex-col items-center">
+            <h1 className="text-3xl text-white">Kazanan: {currentItems[0]?.name}</h1>
+            <img src={currentItems[0]?.image} alt={currentItems[0]?.name} className="w-48 h-48 object-cover rounded-lg mt-4" />
+          </div>
+        ) : (
+          <>
+            {/* İlk oyuncu */}
+            <div
+              className={`w-[40%] h-3/4 border-4 border-red-500 rounded-lg cursor-pointer transition-all duration-1000 ${
+                selectedIndex === 0 ? "center-div-fromLeft " : animating ? "opacity-0" : ""
+              }`}
+              onClick={() => handleSelectItem(0)}
+            >
+              <img src={currentItems[0]?.image} alt={currentItems[0]?.name} className="w-full h-full object-cover rounded-lg" />
+              <h1 className="text-white text-center pt-2">{currentItems[0]?.name}</h1>
+            </div>
 
-        {/* VS görseli */}
-        <img className='w-14 h-14' src={vs} alt="vs" />
+            {/* VS Görseli */}
+            <img
+              className={`w-14 h-14 transition-opacity duration-1000 ${animating ? "opacity-0" : "opacity-100"}`}
+              src={vs}
+              alt="vs"
+            />
 
-        {/* İkinci div */}
-        <div
-          className='w-[40%] h-3/4 border-4 border-cyan-500 rounded-lg cursor-pointer'
-          onClick={() => handleSelectItem(1)} // İkinci öğe seçimi
-        >
-          <img src={currentItems[1]?.image} alt={currentItems[1]?.name} className="w-full h-full object-cover rounded-lg" />
-          <h1 className='text-white text-center'>{currentItems[1]?.name}</h1>
-        </div>
+            {/* İkinci oyuncu */}
+            <div
+              className={`w-[40%] h-3/4 border-4 border-cyan-500 rounded-lg cursor-pointer transition-all duration-1000 ${
+                selectedIndex === 1 ? "center-div-fromRight " : animating ? "opacity-0" : ""
+              }`}
+              onClick={() => handleSelectItem(1)}
+            >
+              <img src={currentItems[1]?.image} alt={currentItems[1]?.name} className="w-full h-full object-cover rounded-lg" />
+              <h1 className="text-white text-center pt-2">{currentItems[1]?.name}</h1>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
