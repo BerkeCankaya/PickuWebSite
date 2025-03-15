@@ -19,7 +19,7 @@ const isGamePage = location.pathname === "/Game";
 const [data, setData] = useState(null);
 
 useEffect(() => {
-  fetch("/data.json")
+  fetch("/PickuWebSite/data.json")
     .then((res) => res.json())
     .then((json) => setData(json))
     .catch((err) => console.error("Hata:", err));
