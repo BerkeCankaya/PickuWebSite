@@ -35,7 +35,6 @@ const Hero = ({ categories, cards }) => {
   const filteredCards = selectedCategory 
     ? cards.filter(card => card.categoryname.toLowerCase() === selectedCategory.toLowerCase()) 
     : cards;
-
   return (
     <div className="flex justify-between items-start w-full min-h-screen">
       {/* Kategoriler */}

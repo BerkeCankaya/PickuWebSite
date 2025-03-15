@@ -79,7 +79,6 @@ export default function CardDetails({ card, winners ,cards , blurred,
           </div>
         </div>
       </div>
-
       {/* Kazanan Seçimler */}
       <div className="flex w-[95%]">
         <div className="w-[50%] h-full">
