@@ -1,11 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App.jsx';
-import './index.css';
-import { HashRouter } from 'react-router-dom'; // BrowserRouter yerine HashRouter kullan
+import { BrowserRouter } from 'react-router-dom'
+import { createRoot } from 'react-dom/client'
+import './index.css'
+import App from './App.jsx'
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <HashRouter>
+createRoot(document.getElementById('root')).render(
+  <BrowserRouter >
     <App />
-  </HashRouter>
-);
+  </BrowserRouter >,
+)
