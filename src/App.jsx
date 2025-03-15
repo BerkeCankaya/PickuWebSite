@@ -1,39 +1,40 @@
-import { BrowserRouter as Router ,Routes, Route  } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect, useState } from "react";  
 import Home from './pages/Home';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import CardDetailsPage from './pages/CardDetailsPage';
-import Game from "./pages/Game"
+import Game from "./pages/Game";
 import CreateQuiz from './pages/CreateQuiz';
+import Navbar from './components/Navbar';
 
 function App() {
+  const location = useLocation(); // Sayfanın URL'sini almak için
 
+  const [data, setData] = useState(null);
 
-const [data, setData] = useState(null);
-
-useEffect(() => {
-  fetch("/PickuWebSite/data.json")
-    .then((res) => res.json())
-    .then((json) => setData(json))
-    .catch((err) => console.error("Hata:", err));
-}, []);
+  useEffect(() => {
+    fetch("/PickuWebSite/data.json")
+      .then((res) => res.json())
+      .then((json) => setData(json))
+      .catch((err) => console.error("Hata:", err));
+  }, []);
 
   return (
-    <Router basename='/PickuWebSite'>
-  <div className='w-full h-full bg-background-color z-20'>
+    <div className='w-full h-full bg-background-color z-20'>
+      {/* Eğer bulunduğun sayfa "/Game" değilse Navbar'ı göster */}
+      {location.pathname !== "/Game" && <Navbar />} 
+
       <Routes>
-        <Route path="/" element={<Home data={data} />}></Route>
-        <Route path="/LoginPage" element={<LoginPage/>}></Route>
-        <Route path="/RegisterPage" element={<RegisterPage/>}></Route>
+        <Route path="//" element={<Home data={data} />} />
+        <Route path="/LoginPage" element={<LoginPage />} />
+        <Route path="/RegisterPage" element={<RegisterPage />} />
         <Route path="/CardDetailsPage/:id" element={<CardDetailsPage data={data} />} />
         <Route path="/Game" element={<Game />} />
-        <Route path="/CreateQuiz" element={<CreateQuiz data={data}/>} />
+        <Route path="/CreateQuiz" element={<CreateQuiz data={data} />} />
       </Routes>
-  </div>
-  </Router>
-  )
+    </div>
+  );
 }
 
-export default App
-
+export default App;
