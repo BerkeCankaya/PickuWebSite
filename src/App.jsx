@@ -24,9 +24,8 @@ function App() {
     <div className='w-full h-full bg-background-color z-20'>
       {/* Eğer bulunduğun sayfa "/Game" değilse Navbar'ı göster */}
       {location.pathname !== "/Game" && <Navbar />} 
-
       <Routes>
-        <Route path="//" element={<Home data={data} />} />
+        <Route path="/" element={<Home data={data} />} />
         <Route path="/LoginPage" element={<LoginPage />} />
         <Route path="/RegisterPage" element={<RegisterPage />} />
         <Route path="/CardDetailsPage/:id" element={<CardDetailsPage data={data} />} />
