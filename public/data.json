@@ -89,10 +89,10 @@
       },
       {
         "id": 3,
-        "title": "Card 3",
-        "description": "This is the first card description.",
-        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1LyIbMha8q69se8v-8aIOM90eyLFLOuuFKQ&s",
-        "categoryname": "Eğlence",
+        "title": "En iyi Filmler",
+        "description": "En eğlenceli,sevilen filmler",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTf3kKoT1OjB0qlg_FgQ2KbnaO0YWzTdXbnxQ&s",
+        "categoryname": "Filmler",
         "UserName": "Berke Çankaya",
         "timesPlayed": "250 kez oynandı",
         "date": "2 January 2025",
@@ -133,9 +133,9 @@
         ]
       },  {
         "id": 4,
-        "title": "Card 4",
-        "description": "This is the first card description.",
-        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1LyIbMha8q69se8v-8aIOM90eyLFLOuuFKQ&s",
+        "title": "En iyi Tatil Yerleri",
+        "description": "Dünyanın en popüler tatil yerleri arasında tercih yaparak, hayalinizdeki tatili keşfedin!",
+        "image": "https://img-s2.onedio.com/id-626a9625f9c01a353540a891/rev-0/w-600/h-314/f-jpg/s-a41d76879e1f2d927ef074a3c65f856deced334e.jpg",
         "categoryname": "Eğlence",
         "UserName": "Berke Çankaya",
         "timesPlayed": "250 kez oynandı",

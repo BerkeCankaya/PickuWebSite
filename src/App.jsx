@@ -14,7 +14,7 @@ function App() {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    fetch(`${import.meta.env.BASE_URL}data.json`)
+    fetch("/PickuWebSite/data.json")
       .then((res) => res.json())
       .then((json) => setData(json))
       .catch((err) => console.error("Hata:", err));
