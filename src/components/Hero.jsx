@@ -70,9 +70,9 @@ const Hero = ({ categories, cards }) => {
           </ul>
         </div>    
       </div>
-      <div className='w-full flex items-center justify-center pt-10 hidden max-lg:flex'>
+      <div className='w-full flex items-center justify-center pt-10 hidden max-lg:flex max-sm:px-6'>
       <select
-              className="w-2/3 p-2 bg-background-color text-color rounded-xl outline-none border-white border-2 cursor-pointer"
+              className="w-2/3 p-2 bg-background-color text-color rounded-xl outline-none border-white border-2 cursor-pointer max-sm:w-full"
               value={selectedCate}
               onChange={(e) => setSelectedCate(e.target.value)}
             >
@@ -84,7 +84,7 @@ const Hero = ({ categories, cards }) => {
       </div>
 
       {/* Filtrelenmiş Kartlar */}
-      <div className="p-10 w-4/6 max-2xl:w-[60%] max-lg:w-[80%] max-lg:gap-32 max-md:gap-16 max-lg:pt-20 flex flex-wrap gap-10">
+      <div className="p-10 max-sm:p-6 w-4/6 max-2xl:w-[60%] max-lg:w-[80%] max-lg:gap-32 max-md:gap-16 max-lg:pt-20 flex flex-wrap gap-10 max-sm:w-full">
         {filteredCards.length > 0 ? (
           filteredCards.map((card) => (
             <Card

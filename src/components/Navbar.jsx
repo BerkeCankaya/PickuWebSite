@@ -27,7 +27,7 @@ const Navbar = () => {
   return (
     <nav className='w-2/3 h-32 flex m-auto z-0 relative max-xl:w-[80%] max-lg:w-[90%] max-md:w-full'>
       <div className="flex justify-center items-center w-1/4 h-full max-xl:w-1/2">
-      <Link onClick={() => setSelectedCategory(null)} className='text-l' to="/"><h1 className='pt-7 text-5xl font-bold text-color'>PickU</h1></Link>
+      <Link onClick={() => setSelectedCategory(null)} className='text-l' to="/"><h1 className='pt-7 text-5xl font-bold text-color max-sm:text-3xl'>PickU</h1></Link>
       </div>
       <div className="flex items-center justify-start pt-9 h-full w-1/3">
         <div className="relative w-full max-xl:hidden">
@@ -65,9 +65,9 @@ const Navbar = () => {
          transition={{ duration: 0.4, ease: "easeInOut" }}
          className="fixed top-0 right-0 bg-slate-950 shadow-primary-shadow w-full p-5 flex flex-col justify-between min-h-screen z-[1000] sm:hidden"
        >
-  <div className="absolute top-0 left-0 bg-slate-950 shadow-primary-shadow w-full p-14 flex flex-col justify-between min-h-screen z-[1000] sm:hidden">
+  <div className="absolute top-0 left-0 bg-slate-950 shadow-primary-shadow w-full py-10 px-5 flex flex-col justify-between min-h-screen z-[1000] sm:hidden">
     <div className="flex flex-col justify-between gap-12">
-      <div className='flex items-center justify-between w-full'>
+      <div className='flex items-center justify-between w-full py-5'>
         <h1 className='text-5xl text-white font-bold'>Picku</h1>
         <button onClick={() => setMenuOpen(false)}>
           <MdClose className="text-5xl cursor-pointer text-white" />
