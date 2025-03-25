@@ -35,11 +35,14 @@ const Hero = ({ categories, cards }) => {
   const filteredCards = selectedCategory 
     ? cards.filter(card => card.categoryname.toLowerCase() === selectedCategory.toLowerCase()) 
     : cards;
+
+    const [selectedCate, setSelectedCate] = useState("");
+
   return (
-    <div className="flex justify-between items-start w-full min-h-screen">
+    <div className="flex justify-between items-center w-full min-h-screen max-lg:flex max-lg:flex-col">
       {/* Kategoriler */}
-      <div className="flex justify-between items-center w-2/6 h-full">
-        <div className="flex w-1/6 flex-col shadow-primary-shadow p-5 rounded-xl fixed top-40 left-96">
+      <div className="flex justify-between  items-center w-2/6 h-full">
+        <div className="flex w-1/6 flex-col shadow-primary-shadow p-5 rounded-xl fixed max-lg:static top-40 left-96 max-2xl:left-64 max-2xl:w-[20%] max-xl:left-44 max-xl:w-[25%] max-lg:hidden">
           <ul className='text-color'>
             <li className='flex flex-col gap-2'>
               <Link className='flex gap-2 items-center hover:bg-bg-hover p-2' to="">
@@ -67,9 +70,21 @@ const Hero = ({ categories, cards }) => {
           </ul>
         </div>    
       </div>
+      <div className='w-full flex items-center justify-center pt-10 hidden max-lg:flex'>
+      <select
+              className="w-2/3 p-2 bg-background-color text-color rounded-xl outline-none border-white border-2 cursor-pointer"
+              value={selectedCate}
+              onChange={(e) => setSelectedCate(e.target.value)}
+            >
+               <option value="" disabled>Kategori Seçin</option>
+                {categories.map((category) => (
+                        <option key={category.id}>{category.name}</option>
+                    ))}
+            </select>
+      </div>
 
       {/* Filtrelenmiş Kartlar */}
-      <div className="p-10 w-4/6 flex flex-wrap gap-10">
+      <div className="p-10 w-4/6 max-2xl:w-[60%] max-lg:w-[80%] max-lg:gap-32 max-md:gap-16 max-lg:pt-20 flex flex-wrap gap-10">
         {filteredCards.length > 0 ? (
           filteredCards.map((card) => (
             <Card
