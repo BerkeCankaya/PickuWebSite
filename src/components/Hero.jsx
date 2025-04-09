@@ -74,9 +74,12 @@ const Hero = ({ categories, cards }) => {
       <select
               className="w-2/3 p-2 bg-background-color text-color rounded-xl outline-none border-white border-2 cursor-pointer max-sm:w-full"
               value={selectedCate}
-              onChange={(e) => setSelectedCate(e.target.value)}
+              onChange={(e) => {
+                setSelectedCate(e.target.value); // sadece seçimi güncelliyoruz
+                setSelectedCategory(e.target.value); // içerik filtreleme için bunu da güncelliyoruz
+              }}
             >
-               <option value="" disabled>Kategori Seçin</option>
+               <option  value="" disabled>Kategori Seçin</option>
                 {categories.map((category) => (
                         <option key={category.id}>{category.name}</option>
                     ))}

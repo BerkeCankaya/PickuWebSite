@@ -19,7 +19,7 @@ export default function QuizDetails({ categories }) {
 
   return (
     <div className="w-full h-full flex justify-center">
-      <form className="w-[80%] h-full flex flex-col shadow-primary-shadow rounded">
+      <form className="w-[80%] h-full flex flex-col shadow-primary-shadow rounded max-md:w-[90%] max-sm:w-full">
         
         {/* Başlık Alanı */}
         <div className="h-1/4 flex flex-col justify-center p-8">
@@ -84,7 +84,7 @@ export default function QuizDetails({ categories }) {
                     ))}
             </select>
 
-            <button className="w-1/2 text-xl bg-button-bgColor p-3 rounded-full text-white">
+            <button className="w-1/2 text-xl bg-button-bgColor p-3 rounded-full text-white max-xl:w-[70%]">
               Quiz Oluştur
             </button>
           </div>

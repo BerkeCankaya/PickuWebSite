@@ -24,6 +24,12 @@
     }
   }
 
+  @media (max-width: 400px) {
+    .text-xsm {
+      font-size: 12px;
+    }
+  }
+  
   .polygon{
     background-color: black;
     width: 60%;

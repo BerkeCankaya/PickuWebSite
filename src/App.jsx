@@ -7,18 +7,22 @@ import CardDetailsPage from './pages/CardDetailsPage';
 import Game from "./pages/Game";
 import CreateQuiz from './pages/CreateQuiz';
 import Navbar from './components/Navbar';
+import axios from 'axios';
 
 function App() {
   const location = useLocation(); // Sayfanın URL'sini almak için
 
   const [data, setData] = useState(null);
 
-  useEffect(() => {
-    fetch("/PickuWebSite/data.json")
-      .then((res) => res.json())
-      .then((json) => setData(json))
-      .catch((err) => console.error("Hata:", err));
-  }, []);
+  useEffect(() =>{
+    axios.get('/PickuWebSite/data.json')
+    .then(response => {
+      setData(response.data);
+    })
+    .catch(error => {
+      console.error("Veri Hatası:",error);
+    });
+  },[]);
 
   return (
     <div className='w-full h-full bg-background-color z-20'>
