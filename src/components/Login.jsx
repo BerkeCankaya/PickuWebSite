@@ -6,7 +6,7 @@ export default function Login() {
 
   return (
     <div className="w-full h-full flex items-center justify-center">
-        <div className="w-[520px] h-[550px] ">
+        <div className="w-[520px] h-[550px] max-sm:w-[90%]">
         <form className="form w-full h-full flex items-center justify-center flex-col gap-8 shadow-primary-shadow rounded-lg" action="">
             <h1 className="text-white text-2xl text-center pb-5">PickU'ya Hoşgeldiniz</h1>
             <div className="flex flex-col gap-5  justify-center">

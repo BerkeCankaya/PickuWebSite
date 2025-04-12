@@ -24,6 +24,8 @@ function App() {
     });
   },[]);
 
+  
+
   return (
     <div className='w-full h-full bg-background-color z-20'>
       {/* Eğer bulunduğun sayfa "/Game" değilse Navbar'ı göster */}

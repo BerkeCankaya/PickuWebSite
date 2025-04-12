@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import {IoPersonSharp } from "react-icons/io5";
 
-const Card = ({id, title, description , categoryname , image , UserName}) => {
+const Card = ({id, title , categoryname , image , UserName}) => {
   return (
     <div className="w-5/6 p-8 max-sm:p-4  h-auto shadow-primary-shadow rounded-xl transition hover:bg-bg-hover max-2xl:w-[70%] max-xl:w-[90%] max-lg:w-full max-sm:w-full ">
        <Link className="flex flex-col gap-7 " to={`/CardDetailsPage/${id}`}>

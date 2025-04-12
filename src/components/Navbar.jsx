@@ -24,8 +24,9 @@ const Navbar = () => {
       document.body.style.overflow = 'auto';
     };
   }, [menuOpen]);
+
   return (
-    <nav className='w-2/3 h-32 flex m-auto z-0 relative max-xl:w-[80%] max-lg:w-[90%] max-md:w-full'>
+    <nav className='w-2/3 h-32 flex m-auto z-0 relative max-xl:w-[80%] max-lg:w-[90%] max-md:w-full z-50'>
       <div className="flex justify-center items-center w-1/4 h-full max-xl:w-1/2">
       <Link onClick={() => setSelectedCategory(null)} className='text-l' to="/"><h1 className='pt-7 text-5xl font-bold text-color max-sm:text-3xl'>PickU</h1></Link>
       </div>
@@ -36,6 +37,7 @@ const Navbar = () => {
             placeholder="Arama Yapınız..."
             className="text-sm pt-2 pb-2 pl-2 pr-10 text-color border-transparent rounded-lg w-full bg-transparent border-none focus:outline-none shadow-primary-shadow"
             aria-label="Search"
+            onChange={(e) => setSearchTerm(e.target.value)}
           />
           <IoSearchSharp className="text-color absolute right-2 top-1/2 transform -translate-y-1/2 cursor-pointer" />
           </div>
@@ -63,10 +65,10 @@ const Navbar = () => {
          animate={{x:0}} 
          exit={{ x: "100%" }} 
          transition={{ duration: 0.4, ease: "easeInOut" }}
-         className="fixed top-0 right-0 bg-slate-950 shadow-primary-shadow w-full p-5 flex flex-col justify-between min-h-screen z-[1000] sm:hidden"
+         className="fixed top-0 right-0 bg-slate-950 shadow-primary-shadow w-full p-5 flex flex-col justify-between min-h-screen z-[999] sm:hidden"
        >
-  <div className="absolute top-0 left-0 bg-slate-950 shadow-primary-shadow w-full py-10 px-5 flex flex-col justify-between min-h-screen z-[1000] sm:hidden">
-    <div className="flex flex-col justify-between gap-12">
+  <div className="absolute top-0 left-0 bg-slate-950 shadow-primary-shadow w-full py-10 px-5 flex flex-col justify-between min-h-screen z-[999] sm:hidden">
+    <div className="flex flex-col justify-between  gap-12">
       <div className='flex items-center justify-between w-full py-5'>
         <h1 className='text-5xl text-white font-bold'>Picku</h1>
         <button onClick={() => setMenuOpen(false)}>

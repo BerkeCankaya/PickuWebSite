@@ -2,7 +2,7 @@ import CardDetails from "../components/CardDetails";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-export default function CardDetailsPage({ data }) {
+export default function CardDetailsPage({ data,menuOpen,setMenuOpen }) {
   const { id } = useParams();
   const [blurred, setBlurred] = useState(true);
   const [selectedCard, setSelectedCard] = useState(null);
@@ -44,13 +44,15 @@ export default function CardDetailsPage({ data }) {
   }
 
   return (
-    <div className="w-2/3 h-full m-auto">
+    <div className="w-2/3 min-h-screen m-auto max-2xl:w-[100%] max-lg:w-full">
       <CardDetails
         card={selectedCard}
         winners={WinnerOptions}
         cards={filteredCards}
         blurred={blurred}
         onUnblur={() => setBlurred(false)}
+        menuOpen={menuOpen}
+        setMenuOpen={setMenuOpen}
       />
     </div>
   );
