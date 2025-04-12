@@ -8,7 +8,7 @@ export default function CardDetailsPage({ data,menuOpen,setMenuOpen }) {
   const [selectedCard, setSelectedCard] = useState(null);
   const [filteredCards, setFilteredCards] = useState([]);
 
-  const WinnerOptions = [
+  const WinnerOptionsFootball = [
     {
       title: "Cristiano Ronaldo",
       image: "https://tmssl.akamaized.net/images/foto/galerie/cristiano-ronaldo-portugal-2024-1718210600-139467.jpg",
@@ -47,7 +47,7 @@ export default function CardDetailsPage({ data,menuOpen,setMenuOpen }) {
     <div className="w-2/3 min-h-screen m-auto max-2xl:w-[100%] max-lg:w-full">
       <CardDetails
         card={selectedCard}
-        winners={WinnerOptions}
+        winners={WinnerOptionsFootball}
         cards={filteredCards}
         blurred={blurred}
         onUnblur={() => setBlurred(false)}
